@@ -1,13 +1,19 @@
-import getComments from "../api/getComments";
+import { EventsResponse, Event } from "../types";
 import Comment from "./Comment";
 import useSWR from "swr";
 
 const Comments = () => {
-  /**
-   * Todo : apiを叩いてコメントを取得する
-   */
+  const fetcher = async (url: string) => {
+    const res = await fetch(url);
+    return res.json();
+  };
 
-  const { data, error, isLoading } = useSWR("", getComments);
+  const { data, error, isLoading } = useSWR<EventsResponse>(
+    "https://mock.apidog.com/m1/666106-637317-default/groups/1/events",
+    fetcher
+  );
+
+  console.table(data);
 
   if (error) {
     return <div>failed to load</div>;
@@ -17,14 +23,22 @@ const Comments = () => {
     return <div>loading...</div>;
   }
 
+  // データが存在し、eventsが配列であることを確認
+  if (!data || !Array.isArray(data.events)) {
+    return <div>No events found</div>;
+  }
+
   return (
-    <div>
-      <Comment title="aaa" likeCount={1} />
-      <Comment title="aaa" likeCount={2} />
-      <Comment title="aaa" likeCount={8} />
-      <Comment title="aaa" likeCount={3} />
-      <Comment title="aaa" likeCount={5} />
-      <Comment title="aaa" likeCount={7} />
+    <div className="fixed mx-4 my-4 overflow-y-scroll w-11/12 h-[800px]">
+      {data.events.map((event: Event) => {
+        return (
+          <Comment
+            key={event.comments_id}
+            name={event.name}
+            tags={event.tags} // タグの likeCount の合計
+          />
+        );
+      })}
     </div>
   );
 };

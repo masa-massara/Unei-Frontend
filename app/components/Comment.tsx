@@ -2,32 +2,35 @@
 
 import React, { FC } from "react";
 import LikeButton from "./LikeButton";
-import ChatIcon from "@mui/icons-material/Chat";
-import { Button } from "@mui/material";
 import Link from "next/link";
+import { Event } from "../types";
 
-interface CommentProps {
-  title: string;
-  likeCount: number;
-}
+const Comment: FC<Event> = ({ name, tags }) => {
+  // コンソールでタグデータを確認
+  console.log(tags);
 
-const Comment: FC<CommentProps> = ({ title, likeCount }) => {
-  const color = "bg-red-700";
+  // タグの色を動的に設定
+  const tagColor = tags.length > 0 ? `bg-${tags[0].color}` : "bg-red-700";
+
   return (
-    <div>
-      <div className="card bg-primary text-primary-content w-96 my-2 shadow-sm">
-        <Link href="/detail">
-          <div className="card-body">
-            <div className={`badge badge-outline ${color}`}>default</div>
-            <h2 className="card-title">{title}</h2>
-            <div className="card-actions justify-center z-10">
-              <LikeButton likeCount={likeCount} />
-              <Button>
-                <ChatIcon />
-              </Button>
-            </div>
+    <div className="card bg-base-100 text-primary-content mx-4 my-4 shadow-xl">
+      <Link href="/detail">
+        <div className="card-body">
+          <div className="flex flex-wrap space-x-2">
+            {tags.map((t) => (
+              <div key={t.name} className={`badge badge-outline ${tagColor}`}>
+                {t.toString()}
+              </div>
+            ))}
           </div>
-        </Link>
+          <span className="card-title text-4xl text-black">{name}</span>
+        </div>
+      </Link>
+      <div className="card-actions justify-start mx-6 mb-4 z-10">
+        {/* likeCountの合計を表示する場合、合計を計算する */}
+        <LikeButton
+          likeCount={tags.reduce((sum, tag) => sum + tag.likeCount, 0)}
+        />
       </div>
     </div>
   );
