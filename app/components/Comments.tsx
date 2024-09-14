@@ -23,14 +23,14 @@ const Comments = () => {
     return <div>loading...</div>;
   }
 
-  // データが存在し、eventsが配列であることを確認
+  // // データが存在し、eventsが配列であることを確認
   if (!data || !Array.isArray(data.events)) {
     return <div>No events found</div>;
   }
 
   return (
     <div className="fixed mx-4 my-4 overflow-y-scroll w-11/12 h-[800px]">
-      {data.events.map((event: Event) => {
+      {data?.events?.map((event: Event) => {
         return (
           <Comment
             key={event.comments_id}
