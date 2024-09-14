@@ -9,12 +9,13 @@ interface LikeButtonProps {
 
 const LikeButton: FC<LikeButtonProps> = ({ likeCount }) => {
   const [liked, setLiked] = useState(false);
+  const [like, setLike] = useState(likeCount);
 
   const handleLike = () => {
     if (liked) {
-      likeCount++;
+      setLike(likeCount++);
     } else {
-      likeCount--;
+      setLike(likeCount--);
     }
     setLiked(!liked);
   };
@@ -25,7 +26,7 @@ const LikeButton: FC<LikeButtonProps> = ({ likeCount }) => {
         <FavoriteIcon />
       </IconButton>
       <Typography variant="body1" style={{ marginLeft: "8px" }}>
-        {likeCount}
+        {like}
       </Typography>
     </div>
   );

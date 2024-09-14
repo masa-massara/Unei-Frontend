@@ -19,12 +19,12 @@ const Comments = () => {
 
   return (
     <div>
-      <Comment title="aaa" detail="testです" likeCount={1} />
-      <Comment title="aaa" detail="testです" likeCount={2} />
-      <Comment title="aaa" detail="testです" likeCount={8} />
-      <Comment title="aaa" detail="testです" likeCount={3} />
-      <Comment title="aaa" detail="testです" likeCount={5} />
-      <Comment title="aaa" detail="testです" likeCount={7} />
+      <Comment title="aaa" likeCount={1} />
+      <Comment title="aaa" likeCount={2} />
+      <Comment title="aaa" likeCount={8} />
+      <Comment title="aaa" likeCount={3} />
+      <Comment title="aaa" likeCount={5} />
+      <Comment title="aaa" likeCount={7} />
     </div>
   );
 };
