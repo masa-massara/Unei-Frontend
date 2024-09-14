@@ -1,6 +1,6 @@
 "use client";
 import { FC, useState } from "react";
-import { IconButton, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 interface LikeButtonProps {
@@ -20,12 +20,20 @@ const LikeButton: FC<LikeButtonProps> = ({ likeCount }) => {
     setLiked(!liked);
   };
 
+  // Todo : 取得した画像をアイコンとする
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <IconButton onClick={handleLike} color={liked ? "error" : "default"}>
+    <div className="flex items-center">
+      <button
+        onClick={handleLike}
+        className={`p-2 rounded-full border ${
+          liked
+            ? "text-red-500 border-red-500"
+            : "text-gray-500 border-gray-300"
+        } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500`}
+      >
         <FavoriteIcon />
-      </IconButton>
-      <Typography variant="body1" style={{ marginLeft: "8px" }}>
+      </button>
+      <Typography variant="body1" className="ml-2">
         {like}
       </Typography>
     </div>

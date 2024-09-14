@@ -18,12 +18,15 @@ const Comments = () => {
   }
 
   return (
-    <div>
+    <div className="fixed mx-4 my-4 overflow-y-scroll w-11/12 h-[800px]">
       <Comment title="aaa" likeCount={1} />
       <Comment title="aaa" likeCount={2} />
       <Comment title="aaa" likeCount={8} />
       <Comment title="aaa" likeCount={3} />
       <Comment title="aaa" likeCount={5} />
+      <Comment title="aaa" likeCount={7} />
+      <Comment title="aaa" likeCount={7} />
+      <Comment title="aaa" likeCount={7} />
       <Comment title="aaa" likeCount={7} />
     </div>
   );
