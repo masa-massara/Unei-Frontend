@@ -6,7 +6,7 @@ export default function Tabs() {
   const [activeTab, setActiveTab] = useState("/popular");
 
   return (
-    <div role="tablist" className="tabs tabs-boxed mx-6">
+    <div role="tablist" className="tabs tabs-boxed mx-6 mt-2">
       <Link
         role="tab"
         href="/popular"

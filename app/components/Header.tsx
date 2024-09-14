@@ -1,15 +1,12 @@
-import SettingsIcon from "@mui/icons-material/Settings";
-import { Button } from "@mui/material";
-import Link from "next/link";
+import TagModal from "./TagModal";
 
 const Header = () => {
   return (
-    <div className="h-20 border-b border-gray-200 flex items-center justify-end">
-      <Button>
-        <Link href="/setting">
+    <div className="h-16 border-b border-gray-200 flex items-center justify-end">
+      {/* <Link href="/setting">
           <SettingsIcon className="size-10" />
-        </Link>
-      </Button>
+        </Link> */}
+      <TagModal />
     </div>
   );
 };
