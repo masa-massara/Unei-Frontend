@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import ChatIcon from "@mui/icons-material/Chat";
 import Link from "next/link";
-import React from "react";
+import Event from "../components/Event";
 
 const page = () => {
   return (
@@ -11,6 +11,7 @@ const page = () => {
           <ChatIcon />
         </Button>
       </Link>
+      <Event />
     </div>
   );
 };
