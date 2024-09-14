@@ -1,25 +1,32 @@
-import React from "react";
+"use client";
+import { FC, useState } from "react";
+import { IconButton, Typography } from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
-const LikeButton = () => {
+interface LikeButtonProps {
+  likeCount: number;
+}
+
+const LikeButton: FC<LikeButtonProps> = ({ likeCount }) => {
+  const [liked, setLiked] = useState(false);
+
+  const handleLike = () => {
+    if (liked) {
+      likeCount++;
+    } else {
+      likeCount--;
+    }
+    setLiked(!liked);
+  };
+
   return (
-    <div>
-      <button className="btn">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 bg-red-500"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-          />
-        </svg>
-        22
-      </button>
+    <div style={{ display: "flex", alignItems: "center" }}>
+      <IconButton onClick={handleLike} color={liked ? "error" : "default"}>
+        <FavoriteIcon />
+      </IconButton>
+      <Typography variant="body1" style={{ marginLeft: "8px" }}>
+        {likeCount}
+      </Typography>
     </div>
   );
 };

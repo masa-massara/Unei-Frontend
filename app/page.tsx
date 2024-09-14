@@ -1,13 +1,10 @@
-import Comment from "./components/Comment";
+"use client";
+import Comments from "./components/Comments";
 
 export default function Home() {
   return (
     <div className="">
-      <Comment title="aaa" detail="testです" />
-      <Comment title="aaa" detail="testです" />
-      <Comment title="aaa" detail="testです" />
-      <Comment title="aaa" detail="testです" />
-      <Comment title="aaa" detail="testです" />
+      <Comments />
     </div>
   );
 }
