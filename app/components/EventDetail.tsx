@@ -1,7 +1,4 @@
-import Event from "./Event";
-import Stamp from "./Stamp";
 import OptionButton from "./OptionButton";
-
 
 const EventDetail = () => {
   const tags = [
@@ -33,7 +30,6 @@ const EventDetail = () => {
         </p>
 
         <OptionButton />
-        <Stamp likeCount={0} />
       </div>
     </div>
   );

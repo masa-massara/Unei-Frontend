@@ -1,10 +1,9 @@
 "use client";
 import { FC, useState } from "react";
 import { Typography } from "@mui/material";
-import { Member, Reaction } from "../types";
-// import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Member, Reaction } from "../types/getEvents";
 
-const Stamp: FC<Reaction | Member> = ({ icon_path, members, likeCount }) => {
+const Stamp: FC<Reaction | Member> = ({ icon_path, likeCount }) => {
   const [liked, setLiked] = useState(false);
   const [like, setLike] = useState(likeCount);
 

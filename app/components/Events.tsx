@@ -1,4 +1,4 @@
-import { EventResponse } from "../types";
+import { EventResponse } from "../types/getEvents";
 
 import Event from "./Event";
 import useSWR from "swr";
@@ -31,6 +31,7 @@ const Events = () => {
     <div className="ml-4 my-4 overflow-y-scroll w-11/12 h-[800px]">
       {data?.events?.map((event: any) => (
         <Event
+          id={event.id}
           name={event.name}
           tags={event.tags}
           reactions={event.reactions}

@@ -9,9 +9,10 @@ export interface EventResponse {
 export interface EventType {
   date?: string;
   description?: string;
+  id: string;
   name?: string;
   place?: string;
-  reactions: Reaction[];
+  reactions?: Reaction[];
   tags?: Tag[];
   [property: string]: any;
 }

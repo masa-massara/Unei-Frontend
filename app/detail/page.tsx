@@ -1,23 +1,47 @@
 "use client";
-import { Button } from "@mui/material";
 import React from "react";
-import Tabs from "../components/Tabs";
-import CommentPost from "../components/CommentPost";
-import ChatIcon from "@mui/icons-material/Chat";
-import EventDetail from "../components/EventDetail";
-import Comments from "../components/Comments";
-import PostButton from "../components/PostButton";
-import RouteHeader from "../components/Header/RouteHeader";
+import Tabs from "@/app/components/Tabs";
+import CommentPost from "@/app/components/CommentPost";
+import EventDetail from "@/app/components/EventDetail";
+import Comments from "@/app/components/Comments";
+import RouteHeader from "@/app/components/Header/RouteHeader";
+import useSWR from "swr";
+import { Comment, EventDetailResponse } from "@/app/types/getEventDetail";
+import { useSearchParams } from "next/navigation";
 
 const DetailPage = () => {
-  const comments = [
-    "9月16日ではなくて9月17日の方が良いと思います。",
-    "9月16日ではなくて9月17日の方が良いと思います。",
-    "9月16日ではなくて9月17日の方が良いと思います。",
-    "9月16日ではなくて9月17日の方が良いと思います。",
-    "9月16日ではなくて9月17日の方が良いと思います。",
-    "9月16日ではなくて9月17日の方が良いと思います。",
-  ];
+  const searchParams = useSearchParams();
+  const event_id = searchParams.get("event_id");
+
+  const fetcher = async (url: string) => {
+    const res = await fetch(url);
+    return res.json();
+  };
+
+  const { data, error, isLoading } = useSWR<EventDetailResponse>(
+    `https://mock.apidog.com/m1/666106-637317-default/groups/1/events/${event_id}`,
+    fetcher
+  );
+
+  console.log(data);
+
+  if (error) {
+    return <div>failed to load</div>;
+  }
+
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
+
+  // データが存在し、commentsが配列であることを確認
+  if (!data || !Array.isArray(data.event.comments)) {
+    return <div>No comments found</div>;
+  }
+
+  const comments = data.event.comments;
+
+  console.log(comments[0].content);
+
   return (
     <div>
       <RouteHeader />
