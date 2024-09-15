@@ -18,7 +18,7 @@ const Event: FC<EventType> = ({ id, name, tags, reactions }) => {
       >
         <div className="card-body">
           <div className="flex flex-wrap space-x-2">
-            {tags?.map((t:TagType) => (
+            {tags?.map((t: TagType) => (
               <div key={t.name} className={`badge badge-outline bg-${t.color}`}>
                 {t.name}
               </div>

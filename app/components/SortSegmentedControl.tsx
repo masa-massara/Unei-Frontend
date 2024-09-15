@@ -10,7 +10,7 @@ export default function SortSegmentedControl() {
     <div role="tablist" className="tabs tabs-boxed mx-6 mt-2">
       <Link
         role="tab"
-        href="/popular"
+        href=""
         onClick={() => setActiveTab("/popular")}
         className={`tab flex items-center space-x-2 ${
           activeTab === "/popular" ? "tab-active bg-blue-500 text-white" : ""
@@ -20,7 +20,7 @@ export default function SortSegmentedControl() {
         人気
       </Link>
       <Link
-        href="/new"
+        href=""
         onClick={() => setActiveTab("/new")}
         className={`tab ${
           activeTab === "/new" ? "tab-active bg-blue-500 text-white" : ""
