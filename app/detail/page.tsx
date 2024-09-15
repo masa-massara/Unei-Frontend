@@ -8,6 +8,7 @@ import useSWR from "swr";
 import { EventDetailResponse } from "@/app/types/getEventDetail";
 import { useSearchParams } from "next/navigation";
 import SortSegmentedControl from "../components/SortSegmentedControl";
+import FixedButton from "../components/FixedButton";
 
 const DetailPage = () => {
   const searchParams = useSearchParams();
@@ -41,6 +42,12 @@ const DetailPage = () => {
   console.log(data.event.tags);
   const comments = data.event.comments;
   const headerTitle = "詳細";
+
+  const onClickPostComment = () => {
+    setIsCommentPostVisible(true);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div>
       <RouteHeader title={headerTitle} />
@@ -53,7 +60,10 @@ const DetailPage = () => {
       <div className="my-2">
         <SortSegmentedControl />
       </div>
-      <CommentPost />
+      {!isCommentPostVisible && (
+        <FixedButton link={""} onClick={onClickPostComment} />
+      )}
+      {isCommentPostVisible && <CommentPost />}
       <Comments comments={comments} />
     </div>
   );
