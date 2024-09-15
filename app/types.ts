@@ -2,7 +2,7 @@ export interface EventsResponse {
   events?: Event[] | null;
 }
 
-export interface Event {
+export interface EventType {
   comments_id?: string;
   /**
    * 開催日

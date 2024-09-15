@@ -1,44 +1,21 @@
-import { EventsResponse, Event } from "../types";
+"use client";
+
+import { FC } from "react";
 import Comment from "./Comment";
-import useSWR from "swr";
 
-const Comments = () => {
-  const fetcher = async (url: string) => {
-    const res = await fetch(url);
-    return res.json();
-  };
-
-  const { data, error, isLoading } = useSWR<EventsResponse>(
-    "https://mock.apidog.com/m1/666106-637317-default/groups/1/events",
-    fetcher
-  );
-
-  console.table(data);
-
-  if (error) {
-    return <div>failed to load</div>;
-  }
-
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
-
-  // // データが存在し、eventsが配列であることを確認
-  if (!data || !Array.isArray(data.events)) {
-    return <div>No events found</div>;
-  }
-
+interface CommentType {
+  comments?: string[];
+}
+const Comments: FC<CommentType> = ({ comments }) => {
   return (
-    <div className="fixed mx-4 my-4 overflow-y-scroll w-11/12 h-[800px]">
-      {data?.events?.map((event: Event) => {
-        return (
-          <Comment
-            key={event.comments_id}
-            name={event.name}
-            tags={event.tags} 
-          />
-        );
-      })}
+    <div className="fixed overflow-y-scroll w-11/12 h-[800px]">
+      <span className="ml-2">{comments?.length}件のコメント</span>
+      <Comment comment="9月16日ではなくて9月17日の方が良いと思います。" />
+      <Comment comment="9月16日ではなくて9月17日の方が良いと思います。" />
+      <Comment comment="9月16日ではなくて9月17日の方が良いと思います。" />
+      <Comment comment="9月16日ではなくて9月17日の方が良いと思います。" />
+      <Comment comment="9月16日ではなくて9月17日の方が良いと思います。" />
+      <Comment comment="9月16日ではなくて9月17日の方が良いと思います。" />
     </div>
   );
 };

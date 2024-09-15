@@ -1,26 +1,29 @@
 "use client";
-import { useSearchParams } from "next/navigation";
+import { Button } from "@mui/material";
+import React from "react";
+import Tabs from "../components/Tabs";
+import CommentPost from "../components/CommentPost";
+import ChatIcon from "@mui/icons-material/Chat";
+import EventDetail from "../components/EventDetail";
+import Comments from "../components/Comments";
+import PostButton from "../components/PostButton";
 
 const DetailPage = () => {
-  const searchParams = useSearchParams();
-  const name = searchParams.get("name");
-  const description = searchParams.get("description");
-  const place = searchParams.get("place");
-  const tags = searchParams.get("tags");
-
-  // クエリパラメータとして受け取ったタグをJSON.parseで復元
-  const parsedTags = tags ? JSON.parse(tags) : [];
-
+  const comments = [
+    "9月16日ではなくて9月17日の方が良いと思います。",
+    "9月16日ではなくて9月17日の方が良いと思います。",
+    "9月16日ではなくて9月17日の方が良いと思います。",
+    "9月16日ではなくて9月17日の方が良いと思います。",
+    "9月16日ではなくて9月17日の方が良いと思います。",
+    "9月16日ではなくて9月17日の方が良いと思います。",
+  ];
   return (
     <div>
-      <h1>{name}</h1>
-      <p>{description}</p>
-      <p>{place}</p>
-      <ul>
-        {parsedTags.map((tag: { name: string }, index: number) => (
-          <li key={index}>{tag.name}</li>
-        ))}
-      </ul>
+      <EventDetail />
+      <Tabs />
+      <CommentPost />
+      <Comments comments={comments} />
+      <PostButton />
     </div>
   );
 };
