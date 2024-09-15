@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import CommentPost from "@/app/components/CommentPost";
 import EventDetail from "@/app/components/EventDetail";
 import Comments from "@/app/components/Comments";
@@ -11,6 +11,7 @@ import SortSegmentedControl from "../components/SortSegmentedControl";
 import FixedButton from "../components/FixedButton";
 
 const DetailPage = () => {
+  const [isCommentPostVisible, setIsCommentPostVisible] = useState(false);
   const searchParams = useSearchParams();
   const event_id = searchParams.get("event_id");
 
@@ -48,22 +49,39 @@ const DetailPage = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const closeCommentPost = () => {
+    setIsCommentPostVisible(false);
+  };
+
   return (
     <div>
-      <RouteHeader title={headerTitle} />
+      <RouteHeader title={headerTitle} prePath="/popular" />
       <EventDetail
         tags={data.event.tags}
         name={data.event.name}
         description={data.event.description}
         reactions={data.event.reactions}
       />
-      <div className="my-2">
+      <div className="sticky top-20 my-2">
         <SortSegmentedControl />
       </div>
       {!isCommentPostVisible && (
         <FixedButton link={""} onClick={onClickPostComment} />
       )}
-      {isCommentPostVisible && <CommentPost />}
+      {isCommentPostVisible && (
+        <>
+          {/* 背景を暗くするオーバーレイ */}
+          <div
+            className="fixed top-0 left-0 w-full h-full z-40 bg-black opacity-10"
+            onClick={closeCommentPost}
+          ></div>
+
+          {/* コメント投稿フォーム */}
+          <div className="fixed bottom-0 left-0 w-full z-50">
+            <CommentPost onClose={closeCommentPost} />
+          </div>
+        </>
+      )}
       <Comments comments={comments} />
     </div>
   );

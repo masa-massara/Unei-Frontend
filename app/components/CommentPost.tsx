@@ -5,7 +5,7 @@ import PlaceIcon from "@mui/icons-material/Place";
 import ArrowDropUpOutlinedIcon from "@mui/icons-material/ArrowDropUpOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 
-const CommentPost = () => {
+const CommentPost = ({ onClose }: { onClose: () => void }) => {
   const [selectedIcon, setSelectedIcon] = useState({
     icon: <ArrowDropUpOutlinedIcon />,
     text: "選択",
@@ -15,23 +15,21 @@ const CommentPost = () => {
     setSelectedIcon({ icon, text });
   };
 
-  // Custom submit handler
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
-    // Append selected icon text to the form data
     formData.append("select", selectedIcon.text);
 
-    // Call the postComment function with the form data
     await postComment(formData);
+    onClose();
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border">
+    <form onSubmit={handleSubmit} className="p-4 border bg-white rounded-t-xl">
       <div className="flex justify-between">
         <div className="dropdown dropdown-top">
-          <div tabIndex={0} role="button" className="btn m-1">
+          <div tabIndex={0} role="button" className="btn mb-4">
             {selectedIcon.icon ? (
               <div className="flex items-center">
                 {selectedIcon.icon}
@@ -43,7 +41,7 @@ const CommentPost = () => {
           </div>
           <ul
             tabIndex={0}
-            className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+            className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 mb-2 shadow-sm"
           >
             <li>
               <a onClick={() => handleSelect(<HomeIcon />, "予定日")}>
@@ -69,7 +67,7 @@ const CommentPost = () => {
         </div>
         <button
           type="submit"
-          className="bg-custom-pink font-bold m-1 w-16 h-12 rounded-2xl"
+          className="bg-custom-pink font-bold mb-4 w-16 h-12 rounded-2xl"
         >
           送信
         </button>
