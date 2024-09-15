@@ -1,7 +1,7 @@
 import { FC } from "react";
-import OptionButton from "./OptionButton";
 import { CommentReaction, Tag } from "../types/getEventDetail"; // Tag 型のインポート
 import Tags from "./Tag/Tags";
+import Stamps from "./Stamps";
 
 type EventDetailProps = {
 	name: string;
@@ -17,6 +17,7 @@ const EventDetail: FC<EventDetailProps> = ({
 	description,
 	place,
 	tags,
+	reactions,
 }) => {
 	console.log(tags);
 
@@ -26,7 +27,7 @@ const EventDetail: FC<EventDetailProps> = ({
 				<Tags tags={tags} />
 				<h1 className="card-title text-black">{name}</h1>
 				<p>{description}</p>
-				<OptionButton />
+				<Stamps id="" reactions={reactions} />
 			</div>
 		</div>
 	);
