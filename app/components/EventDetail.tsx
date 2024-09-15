@@ -1,4 +1,3 @@
-import Event from "./Event";
 import LikeButton from "./LikeButton";
 import OptionButton from "./OptionButton";
 
@@ -31,9 +30,8 @@ const EventDetail = () => {
           詳細です詳細です詳細です詳細です詳細です詳細です詳細です詳細です詳細です詳細です詳細です詳細です詳細です詳細です詳細です
         </p>
 
-      <OptionButton />
-      <LikeButton likeCount={0} />
-
+        <OptionButton />
+        <LikeButton likeCount={0} />
       </div>
     </div>
   );

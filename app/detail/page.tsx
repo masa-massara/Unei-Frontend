@@ -1,13 +1,9 @@
 "use client";
-import { Button } from "@mui/material";
-import React from "react";
-import Tabs from "../components/Tabs";
 import CommentPost from "../components/CommentPost";
-import ChatIcon from "@mui/icons-material/Chat";
 import EventDetail from "../components/EventDetail";
 import Comments from "../components/Comments";
-import PostButton from "../components/PostButton";
 import RouteHeader from "../components/Header/RouteHeader";
+import SortSegmentedControl from "../components/SortSegmentedControl";
 
 const DetailPage = () => {
   const comments = [
@@ -18,11 +14,17 @@ const DetailPage = () => {
     "9月16日ではなくて9月17日の方が良いと思います。",
     "9月16日ではなくて9月17日の方が良いと思います。",
   ];
+
+  const headerTitle = "詳細";
   return (
     <div>
-      <RouteHeader />
+      <RouteHeader title={headerTitle} />
       <EventDetail />
-      <Tabs />
+      {/* <div className="sticky top-20"> */}
+      <div className="my-2">
+        <SortSegmentedControl />
+      </div>
+      {/* </div> */}
       <CommentPost />
       <Comments comments={comments} />
     </div>
