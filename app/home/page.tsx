@@ -1,8 +1,8 @@
 "use client";
-import PostButton from "@/app/components/PostButton";
 import HomeHeader from "../components/Header/HomeHeader";
 import Events from "../components/Events";
 import SortSegmentedControl from "../components/SortSegmentedControl";
+import FixedButton from "../components/FixedButton";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
         <SortSegmentedControl />
         <Events />
       </div>
-      <PostButton />
+      <FixedButton link="/post" onClick={() => {}} icon_name="post" />
     </>
   );
 }

@@ -55,7 +55,7 @@ const DetailPage = () => {
 
   return (
     <div>
-      <RouteHeader title={headerTitle} prePath="/popular" />
+      <RouteHeader title={headerTitle} prePath="/home" />
       <EventDetail
         tags={data.event.tags}
         name={data.event.name}
@@ -66,11 +66,14 @@ const DetailPage = () => {
         <SortSegmentedControl />
       </div>
       {!isCommentPostVisible && (
-        <FixedButton link={""} onClick={onClickPostComment} />
+        <FixedButton
+          link={""}
+          onClick={onClickPostComment}
+          icon_name="comment"
+        />
       )}
       {isCommentPostVisible && (
         <>
-          {/* 背景を暗くするオーバーレイ */}
           <div
             className="fixed top-0 left-0 w-full h-full z-40 bg-black opacity-10"
             onClick={closeCommentPost}
