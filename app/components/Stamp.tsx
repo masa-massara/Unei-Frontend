@@ -1,19 +1,15 @@
 "use client";
 import { FC, useState } from "react";
 import { Typography } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Member, Reaction } from "../types/getEvents";
 
-interface LikeButtonProps {
-  likeCount: number;
-}
-
-const LikeButton: FC<LikeButtonProps> = ({ likeCount }) => {
+const Stamp: FC<Reaction | Member> = ({ icon_path, likeCount }) => {
   const [liked, setLiked] = useState(false);
   const [like, setLike] = useState(likeCount);
 
   const handleLike = () => {
     if (liked) {
-      setLike(likeCount++);
+      setLike(++likeCount);
     } else {
       setLike(likeCount--);
     }
@@ -31,7 +27,8 @@ const LikeButton: FC<LikeButtonProps> = ({ likeCount }) => {
             : "text-gray-500 border-gray-300"
         } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500`}
       >
-        <FavoriteIcon />
+        <img src={icon_path} alt="test" width={32} height={32} />
+        {/* <FavoriteIcon /> */}
       </button>
       <Typography variant="body1" className="ml-2">
         {like}
@@ -40,4 +37,4 @@ const LikeButton: FC<LikeButtonProps> = ({ likeCount }) => {
   );
 };
 
-export default LikeButton;
+export default Stamp;

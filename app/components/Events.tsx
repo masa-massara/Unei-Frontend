@@ -1,4 +1,4 @@
-import { EventsResponse, EventType } from "../types";
+import { EventResponse } from "../types/getEvents";
 
 import Event from "./Event";
 import useSWR from "swr";
@@ -9,12 +9,10 @@ const Events = () => {
     return res.json();
   };
 
-  const { data, error, isLoading } = useSWR<EventsResponse>(
+  const { data, error, isLoading } = useSWR<EventResponse>(
     "https://mock.apidog.com/m1/666106-637317-default/groups/1/events",
     fetcher
   );
-
-  console.table(data);
 
   if (error) {
     return <div>failed to load</div>;
@@ -30,12 +28,15 @@ const Events = () => {
   }
 
   return (
-    <div className="fixed ml-4 my-4 overflow-y-scroll w-11/12 h-[200px]">
-      {data?.events?.map((event: any) => {
-        return (
-          <Event key={event.comments_id} name={event.name} tags={event.tags} />
-        );
-      })}
+    <div className="ml-4 my-4 overflow-y-scroll w-11/12 h-[800px]">
+      {data?.events?.map((event: any) => (
+        <Event
+          id={event.id}
+          name={event.name}
+          tags={event.tags}
+          reactions={event.reactions}
+        />
+      ))}
     </div>
   );
 };

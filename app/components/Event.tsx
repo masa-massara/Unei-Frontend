@@ -1,37 +1,33 @@
 "use client";
 
 import React, { FC } from "react";
-import LikeButton from "./LikeButton";
 import Link from "next/link";
-import { EventType } from "../types";
+import { EventType } from "../types/getEvents";
+import Stamps from "./Stamps";
 
-const Event: FC<EventType> = ({ name, tags }) => {
-  // コンソールでタグデータを確認
-  console.log(tags);
-
-  // タグの色を動的に設定
-  const tagColor = tags.length > 0 ? `bg-${tags[0].color}` : "bg-red-700";
-
+// event.reactionsを渡す
+const Event: FC<EventType> = ({ id, name, tags, reactions }) => {
+  console.log(reactions);
   return (
     <div className="card bg-base-100 text-primary-content mx-4 my-4 shadow-xl">
-      <Link href="/detail">
+      <Link
+        href={{
+          pathname: "/detail",
+          query: { event_id: id },
+        }}
+      >
         <div className="card-body">
           <div className="flex flex-wrap space-x-2">
-            {tags.map((t) => (
-              <div key={t.name} className={`badge badge-outline ${tagColor}`}>
-                {t.toString()}
+            {tags?.map((t) => (
+              <div key={t.name} className={`badge badge-outline bg-${t.color}`}>
+                {t.name}
               </div>
             ))}
           </div>
           <span className="card-title text-4xl text-black">{name}</span>
         </div>
       </Link>
-      <div className="card-actions justify-start mx-6 mb-4 z-10">
-        {/* likeCountの合計を表示する場合、合計を計算する */}
-        <LikeButton
-          likeCount={tags.reduce((sum, tag) => sum + tag.likeCount, 0)}
-        />
-      </div>
+      <Stamps reactions={reactions} id={id} />
     </div>
   );
 };
