@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { postComment } from "../api/postComment";
-import HomeIcon from "@mui/icons-material/Home";
+import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import PlaceIcon from "@mui/icons-material/Place";
-import ArrowDropUpOutlinedIcon from "@mui/icons-material/ArrowDropUpOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
+import ArrowDropUpOutlinedIcon from "@mui/icons-material/ArrowDropUpOutlined";
 
 const CommentPost = ({ onClose }: { onClose: () => void }) => {
   const [selectedIcon, setSelectedIcon] = useState({
@@ -44,8 +44,12 @@ const CommentPost = ({ onClose }: { onClose: () => void }) => {
             className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 mb-2 shadow-sm"
           >
             <li>
-              <a onClick={() => handleSelect(<HomeIcon />, "予定日")}>
-                <HomeIcon />
+              <a
+                onClick={() =>
+                  handleSelect(<CalendarMonthOutlinedIcon />, "予定日")
+                }
+              >
+                <CalendarMonthOutlinedIcon />
                 予定日
               </a>
             </li>
