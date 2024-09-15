@@ -8,13 +8,22 @@ type TagProps = {
 };
 
 const Tag = ({ name, color = "#979797", icon }: TagProps) => {
+	// color が '0x' で始まる場合、それを取り除く処理
+	const formattedColor = color?.startsWith("0x")
+		? `#${color.slice(2)}`
+		: color;
+
 	return (
 		<div
-			className="badge flex items-center heigit-[26px] rounded-lg "
+			className="badge flex items-center h-7 rounded-lg "
 			style={{ backgroundColor: "#F9F9F9" }} // バッジの背景色を指定
 		>
 			{/* アイコンが渡されている場合はそれを表示、渡されていない場合はデフォルトのCircleIconを表示 */}
-			{icon ? icon : <CircleIcon sx={{ color: color, fontSize: 12 }} />}
+			{icon ? (
+				icon
+			) : (
+				<CircleIcon sx={{ color: formattedColor, fontSize: 12 }} />
+			)}
 
 			{/* タグの名前を表示 */}
 			<span

@@ -1,13 +1,16 @@
+/**
+ * Request
+ */
 export interface EventDetailResponse {
-  event: EventDetail;
+  events: The3321599;
   [property: string]: any;
 }
 
 /**
- * Event
- */
-export interface EventDetail {
-  comments?: Comment[];
+* Event
+*/
+export interface The3321599 {
+  comments: Comment[];
   /**
    * 開催日
    */
@@ -19,29 +22,28 @@ export interface EventDetail {
   /**
    * 名前
    */
-  name?: string;
+  name: string;
   /**
    * 開催場所
    */
   place?: null | string;
-  reactions?: Reaction[];
-  tags?: Tag[];
+  reactions: EventsReaction[];
+  tags: Tag[];
   [property: string]: any;
 }
 
-/**
- * Comment
- */
 export interface Comment {
   author: User;
+  categories: Category[];
   countent: string;
-  reactions: Reaction[];
+  id: string;
+  reactions: CommentReaction[];
   [property: string]: any;
 }
 
 /**
- * User
- */
+* User
+*/
 export interface User {
   /**
    * 名前
@@ -50,16 +52,39 @@ export interface User {
   [property: string]: any;
 }
 
-/**
- * Reaction
- */
-export interface Reaction {
-  icon_path: string;
-  members: Member[];
+export interface Category {
+  /**
+   * 名前
+   */
+  name: string;
   [property: string]: any;
 }
 
-export interface Member {
+export interface CommentReaction {
+  icon_path: string;
+  members: PurpleMember[];
+  [property: string]: any;
+}
+
+export interface PurpleMember {
+  /**
+   * アイコンのURL
+   */
+  icon_path: string;
+  /**
+   * メンバーの名前
+   */
+  name: string;
+  [property: string]: any;
+}
+
+export interface EventsReaction {
+  icon_path: string;
+  members: FluffyMember[];
+  [property: string]: any;
+}
+
+export interface FluffyMember {
   /**
    * アイコンのURL
    */
@@ -72,8 +97,8 @@ export interface Member {
 }
 
 /**
- * Tag
- */
+* Tag
+*/
 export interface Tag {
   /**
    * 色

@@ -2,7 +2,7 @@
 
 import React, { FC } from "react";
 import Link from "next/link";
-import { EventType } from "../types/getEvents";
+import { EventType, TagType } from "../types/getEvents";
 import Stamps from "./Stamps";
 
 // event.reactionsを渡す
@@ -18,7 +18,7 @@ const Event: FC<EventType> = ({ id, name, tags, reactions }) => {
       >
         <div className="card-body">
           <div className="flex flex-wrap space-x-2">
-            {tags?.map((t) => (
+            {tags?.map((t:TagType) => (
               <div key={t.name} className={`badge badge-outline bg-${t.color}`}>
                 {t.name}
               </div>
