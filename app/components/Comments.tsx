@@ -35,7 +35,7 @@ const Comments = () => {
           <Comment
             key={event.comments_id}
             name={event.name}
-            tags={event.tags} // タグの likeCount の合計
+            tags={event.tags} 
           />
         );
       })}
