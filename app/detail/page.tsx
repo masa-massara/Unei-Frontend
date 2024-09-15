@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Tabs from "@/app/components/Tabs";
 import CommentPost from "@/app/components/CommentPost";
 import EventDetail from "@/app/components/EventDetail";
 import Comments from "@/app/components/Comments";
@@ -8,6 +7,7 @@ import RouteHeader from "@/app/components/Header/RouteHeader";
 import useSWR from "swr";
 import { EventDetailResponse } from "@/app/types/getEventDetail";
 import { useSearchParams } from "next/navigation";
+import SortSegmentedControl from "../components/SortSegmentedControl";
 
 const DetailPage = () => {
   const searchParams = useSearchParams();
@@ -40,17 +40,19 @@ const DetailPage = () => {
 
   console.log(data.event.tags);
   const comments = data.event.comments;
-
+  const headerTitle = "詳細";
   return (
     <div>
-      <RouteHeader />
+      <RouteHeader title={headerTitle} />
       <EventDetail
         tags={data.event.tags}
         name={data.event.name}
         description={data.event.description}
         reactions={data.event.reactions}
       />
-      <Tabs />
+      <div className="my-2">
+        <SortSegmentedControl />
+      </div>
       <CommentPost />
       <Comments comments={comments} />
     </div>

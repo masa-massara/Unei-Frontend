@@ -6,7 +6,7 @@ import { EventDetail } from "../types/getEventDetail";
 
 const Comments: FC<EventDetail> = ({ comments }) => {
   return (
-    <div className="fixed overflow-y-scroll w-11/12 h-[800px]">
+    <div className="w-11/12 h-[800px]">
       <span className="ml-2">{comments?.length}件のコメント</span>
       {comments?.map((comment) => (
         <Comment

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
 import Link from "next/link";
 
-export default function Tabs() {
+export default function SortSegmentedControl() {
   const [activeTab, setActiveTab] = useState("/popular");
 
   return (
@@ -25,7 +26,7 @@ export default function Tabs() {
           activeTab === "/new" ? "tab-active bg-blue-500 text-white" : ""
         }`}
       >
-        <TrendingUpIcon />
+        <ArrowUpwardOutlinedIcon />
         新着
       </Link>
     </div>
