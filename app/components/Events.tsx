@@ -3,7 +3,7 @@ import { EventsResponse, EventType } from "../types";
 import Event from "./Event";
 import useSWR from "swr";
 
-const Comments = () => {
+const Events = () => {
   const fetcher = async (url: string) => {
     const res = await fetch(url);
     return res.json();
@@ -40,4 +40,4 @@ const Comments = () => {
   );
 };
 
-export default Comments;
+export default Events;
