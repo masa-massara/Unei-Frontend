@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@mui/material";
 import React from "react";
+<<<<<<< HEAD
 import Tabs from "../components/Tabs";
 import CommentPost from "../components/CommentPost";
 import MapsUgcIcon from "@mui/icons-material/MapsUgc";
@@ -40,6 +41,20 @@ const page = () => {
       </dialog>
       <Comments />
     </div>
+=======
+import RouteHeader from "../components/Header/RouteHeader";
+
+const page = () => {
+  return (
+    <>
+      <RouteHeader />
+      <Link href="/popular">
+        <Button>
+          <ChatIcon />
+        </Button>
+      </Link>
+    </>
+>>>>>>> 928f8243cf483abedc44810480a02c8ff02c80f5
   );
 };
 
