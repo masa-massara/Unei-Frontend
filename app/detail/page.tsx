@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CommentPost from "@/app/components/CommentPost";
-import EventDetail from "@/app/components/EventDetail"; // ここを修正
+import EventDetail from "@/app/components/EventDetail";
 import Comments from "@/app/components/Comments";
 import RouteHeader from "@/app/components/Header/RouteHeader";
 import useSWR from "swr";
@@ -9,8 +9,10 @@ import { EventDetailResponse } from "@/app/types/getEventDetail";
 import { useSearchParams } from "next/navigation";
 import SortSegmentedControl from "../components/SortSegmentedControl";
 import FixedButton from "../components/FixedButton";
+import { GroupEventContext } from "../contexts/GroupEventContext";
 
 const DetailPage = () => {
+	const { groupId, eventId } = useContext(GroupEventContext);
 	const [isCommentPostVisible, setIsCommentPostVisible] = useState(false);
 	const searchParams = useSearchParams();
 	const event_id = searchParams.get("event_id");
@@ -26,8 +28,7 @@ const DetailPage = () => {
 	);
 
 	console.log(data);
-  console.log(data?.events.comments);
-  
+	console.log(data?.events.comments);
 
 	if (error) {
 		return <div>failed to load</div>;
@@ -80,12 +81,15 @@ const DetailPage = () => {
 					></div>
 
 					<div className="fixed bottom-0 left-0 w-full z-50">
-						<CommentPost onClose={closeCommentPost} />
+						<CommentPost
+							onClose={closeCommentPost}
+							event_id={eventId}
+							group_id={groupId}
+						/>
 					</div>
 				</>
 			)}
 			<Comments comments={comments} />
-      
 		</div>
 	);
 };

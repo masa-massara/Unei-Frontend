@@ -13,8 +13,7 @@ export interface EventType {
 	name?: string;
 	place?: string;
 	reactions?: Reaction[];
-	tags?: TagType;
-	[];
+	tags?: TagType[];
 	[property: string]: any;
 }
 

@@ -1,17 +1,22 @@
-import { EventResponse, EventType } from "../types/getEvents";
-
-
-import Event from "./Event";
+import { useContext } from "react";
+import { GroupEventContext } from "../contexts/GroupEventContext";
+import { useRouter } from "next/navigation";
 import useSWR from "swr";
+import { EventResponse, EventType } from "../types/getEvents";
+import Event from "./Event";
 
 const Events = () => {
+	const { setGroupId, setEventId } = useContext(GroupEventContext);
+	const router = useRouter();
+	const group_id = "1"; // 固定のグループIDを使用
+
 	const fetcher = async (url: string) => {
 		const res = await fetch(url);
 		return res.json();
 	};
 
 	const { data, error, isLoading } = useSWR<EventResponse>(
-		"https://mock.apidog.com/m1/666106-637317-default/groups/1/events",
+		`https://mock.apidog.com/m1/666106-637317-default/groups/${group_id}/events`,
 		fetcher
 	);
 
@@ -23,22 +28,28 @@ const Events = () => {
 		return <div>loading...</div>;
 	}
 
-	// // データが存在し、eventsが配列であることを確認
 	if (!data || !Array.isArray(data.events)) {
 		return <div>No events found</div>;
 	}
 
+	const handleEventClick = (event: EventType) => {
+		setGroupId(group_id);
+		setEventId(event.id);
+		router.push(`/detail`);
+	};
+
 	return (
-		<div className="ml-4 my-4 overflow-y-scroll w-11/12 h-[800px]">
+		<div className="w-full overflow-y-scroll h-[800px] flex-col flex items-center gap-5">
 			{data?.events?.map((event: EventType, index) => (
-				<Event
-					key={index}
-					index={index}
-					id={event.id}
-					name={event.name}
-					tags={event.tags}
-					reactions={event.reactions}
-				/>
+				<div key={index} onClick={() => handleEventClick(event)}>
+					<Event
+						index={index}
+						id={event.id}
+						name={event.name}
+						tags={event.tags}
+						reactions={event.reactions}
+					/>
+				</div>
 			))}
 		</div>
 	);

@@ -6,7 +6,6 @@ type Props = {
 };
 
 const RouteHeader = ({ title, prePath }: Props) => {
-	prePath = "aa";
 	return (
 		<div className="w-full flex justify-center">
 			<div className="fixed flex items-center w-[calc(100%-2rem)] px-10 mt-2 top-0 z-50 h-16 border bg-white shadow-md  rounded-lg">
