@@ -1,7 +1,7 @@
 "use client";
 
 import { FC } from "react";
-import LikeButton from "./LikeButton";
+import Stamp from "./Stamp";
 import OptionButton from "./OptionButton";
 
 interface CommentType {
@@ -14,7 +14,7 @@ const Comment: FC<CommentType> = ({ comment }) => {
       <div className="ml-2 my-2">
         <OptionButton />
         <span>{comment}</span>
-        <LikeButton likeCount={0} />
+        <Stamp likeCount={0} />
       </div>
     </div>
   );

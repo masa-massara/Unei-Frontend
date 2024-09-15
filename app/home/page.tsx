@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <HomeHeader />
-      <div className="space-y-4">
+      <div className="fixed space-y-4">
         <Tabs />
         <Events />
       </div>

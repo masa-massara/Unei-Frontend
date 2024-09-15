@@ -1,38 +1,47 @@
-export interface EventsResponse {
-  events?: Event[] | null;
+export interface EventResponse {
+  events: EventType[];
+  [property: string]: any;
 }
 
+/**
+ * Event
+ */
 export interface EventType {
-  comments_id?: string;
+  date?: string;
+  description?: string;
+  name?: string;
+  place?: string;
+  reactions: Reaction[];
+  tags?: Tag[];
+  [property: string]: any;
+}
+
+/**
+ * Reactions
+ */
+export interface Reaction {
+  icon_path: string;
+  members: Member[];
+  [property: string]: any;
+}
+
+export interface Member {
+  icon_path?: string;
+  name: string;
+  [property: string]: any;
+}
+
+/**
+ * Tag
+ */
+export interface Tag {
   /**
-   * 開催日
+   * 色
    */
-  date?: null | string;
-  /**
-   * イベントの詳細説明
-   */
-  description?: null | string;
+  color: string;
   /**
    * 名前
    */
   name: string;
-  /**
-   * 開催場所
-   */
-  place?: null | string;
-  /**
-   * タグが配列で入る
-   */
-  tags: The3321602[];
-}
-
-/**
- * React
- *
- * Tag
- */
-export interface The3321602 {
-  color: string;
-  name: string;
-  likeCount: number;
+  [property: string]: any;
 }
