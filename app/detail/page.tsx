@@ -6,7 +6,7 @@ import EventDetail from "@/app/components/EventDetail";
 import Comments from "@/app/components/Comments";
 import RouteHeader from "@/app/components/Header/RouteHeader";
 import useSWR from "swr";
-import { Comment, EventDetailResponse } from "@/app/types/getEventDetail";
+import { EventDetailResponse } from "@/app/types/getEventDetail";
 import { useSearchParams } from "next/navigation";
 
 const DetailPage = () => {
@@ -38,14 +38,18 @@ const DetailPage = () => {
     return <div>No comments found</div>;
   }
 
+  console.log(data.event.tags);
   const comments = data.event.comments;
-
-  console.log(comments[0].content);
 
   return (
     <div>
       <RouteHeader />
-      <EventDetail />
+      <EventDetail
+        tags={data.event.tags}
+        name={data.event.name}
+        description={data.event.description}
+        reactions={data.event.reactions}
+      />
       <Tabs />
       <CommentPost />
       <Comments comments={comments} />
