@@ -9,8 +9,9 @@ const Comment: FC<Event> = ({ name, tags }) => {
   // コンソールでタグデータを確認
   console.log(tags);
 
+  const isTagColor = `bg-${tags[0].color}`;
   // タグの色を動的に設定
-  const tagColor = tags.length > 0 ? `bg-${tags[0].color}` : "bg-red-700";
+  const tagColor = tags.length > 0 ? isTagColor : "bg-red-700";
 
   return (
     <div className="card bg-base-100 text-primary-content mx-4 my-4 shadow-xl">

@@ -1,8 +1,8 @@
 "use client";
 import Comments from "@/app/components/Comments";
 import PostButton from "@/app/components/PostButton";
-import Header from "../components/Header";
 import Tab from "../components/Tab";
+import HomeHeader from "../components/Header/HomeHeader";
 
 export default function Home() {
   /**
@@ -12,13 +12,13 @@ export default function Home() {
    * 3.アイコンを取得して表示する
    */
   return (
-    <div className="space-y-4">
-      <div className="sticky top-0 bg-white z-50">
-        <Header />
+    <>
+      <HomeHeader />
+      <div className="min-h-screen space-y-4">
         <Tab />
+        <Comments />
+        <PostButton />
       </div>
-      <Comments />
-      <PostButton />
-    </div>
+    </>
   );
 }
