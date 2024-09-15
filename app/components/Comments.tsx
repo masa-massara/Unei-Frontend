@@ -29,7 +29,7 @@ const Comments = () => {
   }
 
   return (
-    <div className="fixed mx-4 my-4 overflow-y-scroll w-11/12 h-[800px]">
+    <div className="mx-4 my-4 overflow-y-scroll w-11/12 h-[800px]">
       {data?.events?.map((event: Event) => {
         return (
           <Comment

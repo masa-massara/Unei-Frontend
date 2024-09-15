@@ -17,5 +17,8 @@ const config = withMT({
     },
   },
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["light", "dark"],
+  },
 }) as Config;
 export default config;
