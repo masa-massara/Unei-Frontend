@@ -11,14 +11,26 @@ const config = withMT({
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "custom-pink": "#f5bdbd",
+        "custom-primary": "#a5b4fc",
       },
     },
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["light", "dark"],
+    themes: [
+      {
+        mytheme: {
+          primary: "#a5b4fc", // カスタムカラー
+          pink: "#f5bdbd",
+          accent: "#6ee7b7",
+          neutral: "#3d4451",
+          "base-100": "#ffffff",
+        },
+      },
+      "light",
+      "dark",
+    ],
   },
 }) as Config;
 export default config;

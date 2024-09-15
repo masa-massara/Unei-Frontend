@@ -1,16 +1,16 @@
 import React from "react";
-import postIdea from "../api/postIdea";
 import BaseInput from "../components/BaseInput";
 import HashTag from "../components/HashTag";
+import postEvent from "../api/postEvent";
 
 const Post = () => {
   return (
     <div>
-      <form action={postIdea}>
+      <form action={postEvent}>
         {/**
          * 1.タイトル
          * 2.内容
-         * 3.タグ追加 
+         * 3.タグ追加
          * 4.オプション ()
          */}
         <BaseInput title="タイトル" />
