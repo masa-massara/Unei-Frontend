@@ -4,32 +4,26 @@ import React, { FC } from "react";
 import Link from "next/link";
 import { EventType, TagType } from "../types/getEvents";
 import Stamps from "./Stamps";
+import Card from "./Card";
+import Tags from "./Tag/Tags";
 
 // event.reactionsを渡す
 const Event: FC<EventType> = ({ id, name, tags, reactions }) => {
-  console.log(reactions);
-  return (
-    <div className="card bg-base-100 text-primary-content mx-4 my-4 shadow-xl">
-      <Link
-        href={{
-          pathname: "/detail",
-          query: { event_id: id },
-        }}
-      >
-        <div className="card-body">
-          <div className="flex flex-wrap space-x-2">
-            {tags?.map((t: TagType) => (
-              <div key={t.name} className={`badge badge-outline bg-${t.color}`}>
-                {t.name}
-              </div>
-            ))}
-          </div>
-          <span className="card-title text-4xl text-black">{name}</span>
-        </div>
-      </Link>
-      <Stamps reactions={reactions} id={id} />
-    </div>
-  );
+	console.log(reactions);
+	return (
+		<Card>
+			<Link
+				href={{
+					pathname: "/detail",
+					query: { event_id: id },
+				}}
+			>
+				<Tags tags={tags} />
+				<h2 className="font-bold text-2xl py-6">{name}</h2>
+			</Link>
+			<Stamps reactions={reactions} id={id} />
+		</Card>
+	);
 };
 
 export default Event;
