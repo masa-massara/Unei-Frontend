@@ -1,8 +1,8 @@
 "use client";
-import Comments from "@/app/components/Comments";
+import Comments from "@/app/components/Events";
 import PostButton from "@/app/components/PostButton";
 import Header from "../components/Header";
-import Tab from "../components/Tab";
+import Tab from "../components/Tabs";
 
 export default function Home() {
   /**
