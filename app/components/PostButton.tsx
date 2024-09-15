@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const PostButton = () => {
   return (
-    <div className="grid fixed bottom-4 right-4 z-10">
+    <div className="grid fixed bottom-4 right-4 z-20">
       <Link href="/post">
         <Button>
           <AddCircleOutlineIcon className="size-16" />

@@ -30,7 +30,7 @@ const Events = () => {
   }
 
   return (
-    <div className="fixed ml-4 my-4 overflow-y-scroll w-11/12 h-[800px]">
+    <div className="fixed ml-4 my-4 overflow-y-scroll w-11/12 h-[200px]">
       {data?.events?.map((event: any) => {
         return (
           <Event key={event.comments_id} name={event.name} tags={event.tags} />
