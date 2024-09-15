@@ -1,21 +1,24 @@
 "use client";
 import { FC, useState } from "react";
-import { Member, Reaction } from "../types/getEvents";
 
-const Stamp: FC<Reaction | Member> = ({ icon_path, likeCount }) => {
+interface StampProps {
+	icon_path: string;
+	likeCount: number;
+}
+
+const Stamp: FC<StampProps> = ({ icon_path, likeCount }) => {
 	const [liked, setLiked] = useState(false);
 	const [like, setLike] = useState(likeCount);
 
 	const handleLike = () => {
 		if (liked) {
-			setLike(++likeCount);
+			setLike(like - 1);
 		} else {
-			setLike(likeCount--);
+			setLike(like + 1);
 		}
 		setLiked(!liked);
 	};
 
-	// Todo : 取得した画像をアイコンとする
 	return (
 		<div className="flex items-center">
 			<button
@@ -40,7 +43,7 @@ const Stamp: FC<Reaction | Member> = ({ icon_path, likeCount }) => {
 				<span
 					className="ml-1 text-gray-500 text-sm"
 					style={{
-						color: liked ? "red" : "gray", // likedの状態で色を変更
+						color: liked ? "red" : "gray",
 					}}
 				>
 					{like}

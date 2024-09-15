@@ -4,6 +4,7 @@ import { FC } from "react";
 import Stamp from "./Stamp";
 import type { Comment } from "../types/getEventDetail";
 import Tags from "./Tag/Tags";
+import Stamps from "./Stamps";
 
 const Comment: FC<Comment> = ({
 	countent,
@@ -21,16 +22,12 @@ const Comment: FC<Comment> = ({
 	});
 	return (
 		<div
-			className="ml-16 pl-5 border-l my-5 max-w-sm "
+			className="ml-16 pl-5 border-l my-5 max-w-xs "
 			style={{ borderLeftWidth: "thick" }}
 		>
 			<Tags tags={categories} />
-			<span className="text-lg my-5">{countent}</span>
-			<Stamp
-				likeCount={0}
-				icon_path={reactions?.[0]?.icon_path}
-				name={reactions?.[0].name}
-			/>
+			<p className="text-lg my-4">{countent}</p>
+			<Stamps reactions={reactions} id={id} />
 		</div>
 	);
 };
