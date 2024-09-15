@@ -1,20 +1,22 @@
 "use client";
 
 import { FC } from "react";
-import LikeButton from "./LikeButton";
+import Stamp from "./Stamp";
 import OptionButton from "./OptionButton";
+import type { Comment } from "../types/getEventDetail";
 
-interface CommentType {
-  comment: string;
-}
-
-const Comment: FC<CommentType> = ({ comment }) => {
+const Comment: FC<Comment> = ({ countent, reactions }) => {
+  console.log(countent);
   return (
     <div className="mx-8 my-4 border border-s-current ">
       <div className="ml-2 my-2">
         <OptionButton />
-        <span>{comment}</span>
-        <LikeButton likeCount={0} />
+        <span className="text-2xl">{countent}</span>
+        <Stamp
+          likeCount={0}
+          icon_path={reactions?.[0]?.icon_path}
+          name={reactions?.[0].name}
+        />
       </div>
     </div>
   );

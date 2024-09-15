@@ -2,20 +2,19 @@
 
 import { FC } from "react";
 import Comment from "./Comment";
+import { EventDetail } from "../types/getEventDetail";
 
-interface CommentType {
-  comments?: string[];
-}
-const Comments: FC<CommentType> = ({ comments }) => {
+const Comments: FC<EventDetail> = ({ comments }) => {
   return (
     <div className="w-11/12 h-[800px]">
       <span className="ml-2">{comments?.length}件のコメント</span>
-      <Comment comment="9月16日ではなくて9月17日の方が良いと思います。" />
-      <Comment comment="9月16日ではなくて9月17日の方が良いと思います。" />
-      <Comment comment="9月16日ではなくて9月17日の方が良いと思います。" />
-      <Comment comment="9月16日ではなくて9月17日の方が良いと思います。" />
-      <Comment comment="9月16日ではなくて9月17日の方が良いと思います。" />
-      <Comment comment="9月16日ではなくて9月17日の方が良いと思います。" />
+      {comments?.map((comment) => (
+        <Comment
+          countent={comment.countent}
+          author={comment.author}
+          reactions={comment.reactions}
+        />
+      ))}
     </div>
   );
 };
