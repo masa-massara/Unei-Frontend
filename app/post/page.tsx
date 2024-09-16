@@ -10,8 +10,10 @@ import PeopleTitle from "../components/CategoryTitle/PeopleTitle";
 import CreateButton from "../components/CreateButton";
 import HashTagUI from "../components/AddHash";
 import { RequestBodyToPostType } from "../types/postEvent";
+import { useRouter } from "next/navigation";
 
 const Post = () => {
+	const router = useRouter();
 	const [formData, setFormData] = useState<RequestBodyToPostType>({
 		description: "",
 		event_date: "",
@@ -57,6 +59,7 @@ const Post = () => {
 				formData
 			);
 			console.log("サーバーからのレスポンス:", response.data);
+			router.push("/home"); // 投稿後に /home へリダイレクト
 		} catch (error) {
 			console.error("エラーが発生しました:", error);
 		}
@@ -122,6 +125,7 @@ const Post = () => {
 								value={formData.max_participants}
 								onChange={handleChange}
 							/>
+               <span>{formData.max_participants} 人</span>
 						</div>
 					</div>
 					<div className="flex justify-center">
