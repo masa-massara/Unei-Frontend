@@ -1,13 +1,20 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { signIn } from "next-auth/react";
 
 const LoginButton = ({
 	iconSrc,
-	handleClick,
+	provider,
 }: {
 	iconSrc: string;
-	handleClick?: () => void;
+	provider: string;
 }) => {
+	const handleClick = () => {
+		signIn(provider, { callbackUrl: "/" }); // ログイン後にトップページにリダイレクト
+	};
+
 	return (
 		<button
 			className="w-64 h-16 rounded-full shadow-md p-4 flex items-center justify-center"
@@ -15,12 +22,12 @@ const LoginButton = ({
 		>
 			<Image
 				src={iconSrc}
-				alt="Discord icon"
+				alt={`${provider} icon`}
 				width={33}
 				height={33}
 				className="mr-2"
 			/>
-			<span>でログイン</span>
+			<span>{provider}でログイン</span>
 		</button>
 	);
 };

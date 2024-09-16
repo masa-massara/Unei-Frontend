@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { GroupEventProvider } from "./contexts/GroupEventContext";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -24,12 +23,14 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+  console.log(process.env.DISCORD_CLIENT_ID);
+  
 	return (
 		<html lang="ja" data-theme="light">
 			<body
 				className={`mt-20 ${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<GroupEventProvider>{children}</GroupEventProvider>
+				{children}
 			</body>
 		</html>
 	);
