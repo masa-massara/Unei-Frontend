@@ -13,7 +13,7 @@ export default function SortSegmentedControl() {
         href=""
         onClick={() => setActiveTab("/popular")}
         className={`tab flex items-center space-x-2 ${
-          activeTab === "/popular" ? "tab-active bg-blue-500 text-white" : ""
+          activeTab === "/popular" ? " bg-custom-pink text-white" : ""
         }`}
       >
         <TrendingUpIcon />
@@ -23,7 +23,7 @@ export default function SortSegmentedControl() {
         href=""
         onClick={() => setActiveTab("/new")}
         className={`tab ${
-          activeTab === "/new" ? "tab-active bg-blue-500 text-white" : ""
+          activeTab === "/new" ? " bg-custom-pink text-white" : ""
         }`}
       >
         <ArrowUpwardOutlinedIcon />

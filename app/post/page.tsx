@@ -24,34 +24,32 @@ const Post = () => {
 		tags: [],
 	});
 
-	const handleChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-	) => {
-		const { name, value } = e.target;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
 
-		// 数値フィールドの処理
-		const numericFields = ["max_participants", "min_participants"];
-		const parsedValue = numericFields.includes(name)
-			? Number(value)
-			: value;
+    // 数値フィールドの処理
+    const numericFields = ["max_participants", "min_participants"];
+    const parsedValue = numericFields.includes(name) ? Number(value) : value;
 
-		setFormData((prevData) => ({
-			...prevData,
-			[name]: parsedValue,
-		}));
-	};
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: parsedValue,
+    }));
+  };
 
-	// タグが更新されたときの処理
-	const handleAddTag = (tags: string[]) => {
-		setFormData((prevData) => ({
-			...prevData,
-			tags: tags,
-		}));
-	};
+  // タグが更新されたときの処理
+  const handleAddTag = (tags: string[]) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      tags: tags,
+    }));
+  };
 
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		console.log("Submitted Data:", formData);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Submitted Data:", formData);
 
 		try {
 			const response = await axios.post(

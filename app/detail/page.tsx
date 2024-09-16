@@ -12,86 +12,90 @@ import FixedButton from "../components/FixedButton";
 import { GroupEventContext } from "../contexts/GroupEventContext";
 
 const DetailPage = () => {
-	const { groupId, eventId } = useContext(GroupEventContext);
-	const [isCommentPostVisible, setIsCommentPostVisible] = useState(false);
-	const searchParams = useSearchParams();
-	const event_id = searchParams.get("event_id");
+  const { groupId, eventId } = useContext(GroupEventContext);
+  const [isCommentPostVisible, setIsCommentPostVisible] = useState(false);
+  const searchParams = useSearchParams();
+  const event_id = searchParams.get("event_id");
 
-	const fetcher = async (url: string) => {
-		const res = await fetch(url);
-		return res.json();
-	};
+  const fetcher = async (url: string) => {
+    const res = await fetch(url);
+    return res.json();
+  };
 
-	const { data, error, isLoading } = useSWR<EventDetailResponse>(
-		`https://mock.apidog.com/m1/666106-637317-default/groups/1/events/${event_id}`,
-		fetcher
-	);
+  const { data, error, isLoading } = useSWR<EventDetailResponse>(
+    `https://mock.apidog.com/m1/666106-637317-default/groups/1/events/${event_id}`,
+    fetcher
+  );
 
-	console.log(data);
-	console.log(data?.events.comments);
+  console.log(data);
+  console.log(data?.events.comments);
 
-	if (error) {
-		return <div>failed to load</div>;
-	}
+  if (error) {
+    return <div>failed to load</div>;
+  }
 
-	if (isLoading) {
-		return <div>loading...</div>;
-	}
+  if (isLoading) {
+    return (
+      <div>
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
+  }
 
-	if (!data || !Array.isArray(data.events.comments)) {
-		return <div>No comments found</div>;
-	}
+  if (!data || !Array.isArray(data.events.comments)) {
+    return <div>No comments found</div>;
+  }
 
-	const comments = data.events.comments;
-	const headerTitle = "詳細";
+  const comments = data.events.comments;
+  const headerTitle = "詳細";
 
-	const onClickPostComment = () => {
-		setIsCommentPostVisible(true);
-		window.scrollTo({ top: 0, behavior: "smooth" });
-	};
+  const onClickPostComment = () => {
+    setIsCommentPostVisible(true);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-	const closeCommentPost = () => {
-		setIsCommentPostVisible(false);
-	};
+  const closeCommentPost = () => {
+    setIsCommentPostVisible(false);
+  };
 
-	return (
-		<div>
-			<RouteHeader title={headerTitle} prePath="/home" />
-			<EventDetail
-				tags={data.events.tags}
-				name={data.events.name}
-				description={data.events.description}
-				reactions={data.events.reactions}
-			/>
-			<div className="sticky top-20 my-2">
-				<SortSegmentedControl />
-			</div>
-			{!isCommentPostVisible && (
-				<FixedButton
-					link={""}
-					onClick={onClickPostComment}
-					icon_name="comment"
-				/>
-			)}
-			{isCommentPostVisible && (
-				<>
-					<div
-						className="fixed top-0 left-0 w-full h-full z-40 bg-black opacity-10"
-						onClick={closeCommentPost}
-					></div>
+  return (
+    <div>
+      <RouteHeader title={headerTitle} prePath="/home" />
+      <EventDetail
+        tags={data.events.tags}
+        name={data.events.name}
+        description={data.events.description}
+        reactions={data.events.reactions}
+      />
+      <div className="sticky top-20 my-2">
+        <SortSegmentedControl />
+      </div>
+      {!isCommentPostVisible && (
+        <FixedButton
+          link={""}
+          onClick={onClickPostComment}
+          icon_name="comment"
+        />
+      )}
+      {isCommentPostVisible && (
+        <>
+          <div
+            className="fixed top-0 left-0 w-full h-full z-40 bg-black opacity-10"
+            onClick={closeCommentPost}
+          ></div>
 
-					<div className="fixed bottom-0 left-0 w-full z-50">
-						<CommentPost
-							onClose={closeCommentPost}
-							event_id={eventId}
-							group_id={groupId}
-						/>
-					</div>
-				</>
-			)}
-			<Comments comments={comments} />
-		</div>
-	);
+          <div className="fixed bottom-0 left-0 w-full z-50">
+            <CommentPost
+              onClose={closeCommentPost}
+              event_id={eventId}
+              group_id={groupId}
+            />
+          </div>
+        </>
+      )}
+      <Comments comments={comments} />
+    </div>
+  );
 };
 
 export default DetailPage;

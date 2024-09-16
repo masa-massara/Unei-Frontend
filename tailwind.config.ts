@@ -12,7 +12,7 @@ const config = withMT({
     extend: {
       colors: {
         "custom-pink": "#f5bdbd",
-        "custom-primary": "#a5b4fc",
+        "custom-light-pink": "#fff0f0",
       },
     },
   },
