@@ -9,7 +9,6 @@ import Tags from "./Tag/Tags";
 
 // event.reactionsを渡す
 const Event: FC<EventType> = ({ id, name, tags, reactions }) => {
-	console.log(reactions);
 	return (
 		<Card>
 			<Link
