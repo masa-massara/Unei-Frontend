@@ -8,7 +8,7 @@ import Tags from "./components/Tag/Tags";
 import LoginButton from "./components/button/LoginButton";
 import Stamps from "./components/Stamps";
 import RouteHeader from "./components/Header/RouteHeader";
-import { ClientProviders } from "./comment/provider/ClientProviders";
+import { ClientProviders } from "./provider/ClientProviders";
 
 const PageContent = () => {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
