@@ -2,7 +2,7 @@
 
 import React, { FC } from "react";
 import Link from "next/link";
-import { EventType, TagType } from "../types/getEvents";
+import { EventType } from "../types/getEvents";
 import Stamps from "./Stamps";
 import Card from "./Card";
 import Tags from "./Tag/Tags";

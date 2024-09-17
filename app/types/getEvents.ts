@@ -1,6 +1,5 @@
 export interface EventResponse {
 	events: EventType[];
-	[property: string]: any;
 }
 
 /**
@@ -14,7 +13,6 @@ export interface EventType {
 	place?: string;
 	reactions?: Reaction[];
 	tags?: TagType[];
-	[property: string]: any;
 }
 
 /**
@@ -23,13 +21,11 @@ export interface EventType {
 export interface Reaction {
 	icon_path: string;
 	members: Member[];
-	[property: string]: any;
 }
 
 export interface Member {
 	icon_path?: string;
 	name: string;
-	[property: string]: any;
 }
 
 /**
@@ -45,5 +41,4 @@ export interface TagType {
 	 * 名前
 	 */
 	name: string;
-	[property: string]: any;
 }

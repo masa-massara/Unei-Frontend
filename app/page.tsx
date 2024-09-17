@@ -11,6 +11,7 @@ import RouteHeader from "./components/Header/RouteHeader";
 import { ClientProviders } from "./comment/provider/ClientProviders";
 
 const PageContent = () => {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { data: session, status } = useSession();
 	const router = useRouter();
 

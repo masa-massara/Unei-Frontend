@@ -18,7 +18,6 @@ type EventDetailProps = {
 const EventDetail: FC<EventDetailProps> = ({
   name,
   description,
-  place,
   tags,
   reactions,
 }) => {

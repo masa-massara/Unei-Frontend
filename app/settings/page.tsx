@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "../components/Card";
 import Categories from "../components/Categories";
-import { Tag } from "@mui/icons-material";
 import RouteHeader from "../components/Header/RouteHeader";
 
 const page = () => {

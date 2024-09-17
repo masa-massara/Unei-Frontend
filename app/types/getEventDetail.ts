@@ -3,7 +3,6 @@
  */
 export interface EventDetailResponse {
 	events: The3321599;
-	[property: string]: any;
 }
 
 /**
@@ -29,7 +28,6 @@ export interface The3321599 {
 	place?: null | string;
 	reactions: EventsReaction[];
 	tags: Tag[];
-	[property: string]: any;
 }
 
 export interface Comment {
@@ -38,7 +36,6 @@ export interface Comment {
 	countent: string;
 	id: string;
 	reactions: CommentReaction[];
-	[property: string]: any;
 }
 
 /**
@@ -49,7 +46,6 @@ export interface User {
 	 * 名前
 	 */
 	user_id: string;
-	[property: string]: any;
 }
 
 export interface Category {
@@ -57,14 +53,12 @@ export interface Category {
 	 * 名前
 	 */
 	name: string;
-	[property: string]: any;
 }
 
 export interface CommentReaction {
 	icon_path: string;
 	members: PurpleMember[];
 	id: string;
-	[property: string]: any;
 }
 
 export interface PurpleMember {
@@ -76,14 +70,12 @@ export interface PurpleMember {
 	 * メンバーの名前
 	 */
 	name: string;
-	[property: string]: any;
 }
 
 export interface EventsReaction {
 	icon_path: string;
 	members: FluffyMember[];
-  id: string;
-	[property: string]: any;
+	id: string;
 }
 
 export interface FluffyMember {
@@ -95,7 +87,6 @@ export interface FluffyMember {
 	 * メンバーの名前
 	 */
 	name: string;
-	[property: string]: any;
 }
 
 /**
@@ -110,5 +101,4 @@ export interface Tag {
 	 * 名前
 	 */
 	name: string;
-	[property: string]: any;
 }

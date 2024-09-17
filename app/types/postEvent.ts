@@ -27,5 +27,5 @@ export interface RequestBodyToPostType {
      * イベントのタグ群
      */
     tags: string[];
-    [property: string]: any;
+    
 }

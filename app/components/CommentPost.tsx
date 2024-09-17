@@ -19,7 +19,7 @@ const CommentPost = ({
 		text: "選択",
 	});
 
-	const handleSelect = (icon: any, text: string) => {
+	const handleSelect = (icon: JSX.Element, text: string) => {
 		setSelectedIcon({ icon, text });
 	};
 
